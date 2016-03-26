@@ -27,6 +27,10 @@ Template.chatTemplate.events = {
         }
     );
   },
+  'bold' : function(e, tmpl) {
+    //document.getElementById("bold").style.color = "red";
+    console.log("Clicked bold!");
+  }
   /*'colorpick' : function() {
     $('.colorpick').colorpicker();
   }*/
