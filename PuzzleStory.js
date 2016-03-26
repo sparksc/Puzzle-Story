@@ -1,23 +1,43 @@
+/**
+ * Create new collection if not present.
+ */
+Messages = new Meteor.Collection('messages');
+
+
+/**
+ * Templates
+ */
 if (Meteor.isClient) {
-  // counter starts at 0
-  Session.setDefault('counter', 0);
-
-  Template.hello.helpers({
-    counter: function () {
-      return Session.get('counter');
+  Template.messages.helpers({
+    messages: function() {
+      return Messages.find({}, { sort: { time: -1}});
     }
   });
 
-  Template.hello.events({
-    'click button': function () {
-      // increment the counter when button is clicked
-      Session.set('counter', Session.get('counter') + 1);
+  Template.input.events = {
+    'keydown input#message' : function (event) {
+      if (event.which == 13) { // 13 is the enter key event
+        if (Meteor.user())
+          var name = Meteor.user().profile.name;
+        else
+          var name = 'Anonymous';
+        var message = document.getElementById('message');
+        if (message.value != '') {
+          Messages.insert({
+            name: name,
+            message: message.value,
+            time: Date.now(),
+          });
+
+          document.getElementById('message').value = '';
+          message.value = '';
+        }
+      }
     }
-  });
+  }
 }
 
-if (Meteor.isServer) {
-  Meteor.startup(function () {
-    // code to run on server at startup
-  });
+if (Meteor.isServer){
+  // this code oly runs on the server (server-side only and not Browser)
 }
+
