@@ -27,7 +27,7 @@ Template.chatTemplate.events = {
         }
     );
   },
-  'colorpick' : function(e, tmpl) {
+  /*'colorpick' : function() {
     $('.colorpick').colorpicker();
-  }
+  }*/
 };
