@@ -1,9 +1,23 @@
 <template name="chatTemplate">
-    <p>Enter a user name: <input id="userName" type="text" value="" /></p>
-    <div style="border: 1px solid; padding: 10px; overflow-y: scroll; height: 550px">
-        {{#each messages}}<pre>{{message}}</pre>{{/each}}
+    <label>Enter a user name: <input id="userName" type="text" value="" /></label>
+    <div style="border: 1px solid; padding: 10px; overflow-y: scroll; height: 400px">
+        {{#each messages}}{{message}} {{/each}}
     </div>
-    <form>
-        <p>Add your piece: <input id="chatInput" /><input type="submit" value="Add it" /></p>
+    <form class="form-inline">
+        <div class="input-group colorpick">
+            <label>Add your piece: <input maxlength="30" id="chatInput" type="text" class="form-control" /></label>
+            <div class="input-group-btn">
+                <button type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-bold" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-italic" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-default">
+                    <span class="input-group-addon"><i></i></span>
+                </button>
+                <input class="btn btn-success" type="submit" value="Place it" />
+            </div>
+        </div>
     </form>
 </template>

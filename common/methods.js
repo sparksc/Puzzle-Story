@@ -10,7 +10,7 @@ Meteor.methods( {
         var id = Messages.insert(newMessage);
 
         var cursor = Messages.find();
-        if (cursor.count() > 20) {
+        if (cursor.count() > 2000) {
             var oldestMessage = Messages.findOne();
             Messages.remove(oldestMessage);
         }
@@ -18,3 +18,4 @@ Meteor.methods( {
         return id;
     }
 });
+
